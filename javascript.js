@@ -35,9 +35,9 @@ $(document).ready(function() {
 
                         $('img').on("click", function() {
 
-                            if ($(this).attr("data-state") === "static") {
+                        	var location = parseInt($(this).attr("id"))
 
-                            	var location = parseInt($(this).attr("id"))
+                            if ($(this).attr("data-state") == "static") {
 
                                 $(this).attr("src", response.data[location].images.fixed_height.url);
 
@@ -45,7 +45,6 @@ $(document).ready(function() {
 
                             } else {
 
-                            	var location = parseInt($(this).attr("id"))
 
                                 $(this).attr("src", response.data[location].images.fixed_height_still.url);
 
