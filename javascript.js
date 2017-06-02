@@ -23,7 +23,8 @@ $(document).ready(function() {
                         var failImg = $("<img>");
 
                         failImg.attr("src", response.data[i].images.fixed_height_still.url);
-                        failImg.attr("id", i);
+                        failImg.attr("data-still", response.data[i].images.fixed_height_still.url)
+                        failImg.attr("data-active", response.data[i].images.fixed_height.url)
                         failImg.attr("data-state", "static")
 
                         newDiv.append(p);
@@ -31,22 +32,17 @@ $(document).ready(function() {
 
                         $("#fails").append(newDiv);
 
-
-
                         $('img').on("click", function() {
-
-                        	var location = parseInt($(this).attr("id"))
 
                             if ($(this).attr("data-state") == "static") {
 
-                                $(this).attr("src", response.data[location].images.fixed_height.url);
+                                $(this).attr("src",  $(this).attr("data-active"));
 
                                 $(this).attr("data-state", "active")
 
                             } else {
 
-
-                                $(this).attr("src", response.data[location].images.fixed_height_still.url);
+                                $(this).attr("src", $(this).attr("data-still"));
 
                                 $(this).attr("data-state", "static")
 
