@@ -10,6 +10,8 @@ $(document).ready(function() {
         }
 
         $('button').on("click", function() {
+			$("#fails").empty();
+
             var x = $(this).data("type");
             var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=dc6zaTOxFJmzC&limit=10"
 
@@ -27,11 +29,13 @@ $(document).ready(function() {
                         newDiv.append(p);
                         newDiv.append(failImg);
 
-                        $("#fails").prepend(newDiv);
+                        $("#fails").append(newDiv);
+
+
 
                         $('img').on("click", function() {
 
-                            if ($(this).attr("data-state") == "static") {
+                            if ($(this).attr("data-state") === "static") {
 
                             	var location = parseInt($(this).attr("id"))
 
