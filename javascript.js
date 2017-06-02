@@ -1,6 +1,5 @@
 $(document).ready(function() {
-
-    var failTypes = ["cat", "dog", "dad", "grandpa", "baby", "drunk", "beach", "elephant"];
+    var failTypes = ["Cat", "Dog", "Dad", "Old", "Baby", "Drunk", "Beach", "Elephant"];
 
     function renderButtons() {
         $("#buttons").empty();
@@ -17,17 +16,42 @@ $(document).ready(function() {
             $.ajax({ url: queryURL, method: "GET" })
                 .done(function(response) {
                     for (var i = 0; i < response.data.length; i++) {
-                        var newDiv = $("<div>");
+                        var newDiv = $("<div id='div'>");
                         var p = $("<p>").text("Rating: " + response.data[i].rating);
                         var failImg = $("<img>");
 
-                        failImg.attr("src", response.data[i].images.fixed_height.url);
+                        failImg.attr("src", response.data[i].images.fixed_height_still.url);
+                        failImg.attr("id", i);
+                        failImg.attr("data-state", "static")
 
                         newDiv.append(p);
                         newDiv.append(failImg);
 
                         $("#fails").prepend(newDiv);
+
+                        $('img').on("click", function() {
+
+                            if ($(this).attr("data-state") == "static") {
+
+                            	var location = parseInt($(this).attr("id"))
+
+                                $(this).attr("src", response.data[location].images.fixed_height.url);
+
+                                $(this).attr("data-state", "active")
+
+                            } else {
+
+                            	var location = parseInt($(this).attr("id"))
+
+                                $(this).attr("src", response.data[location].images.fixed_height_still.url);
+
+                                $(this).attr("data-state", "static")
+
+                            }
+                        });
                     }
+
+
                 })
         });
     };
