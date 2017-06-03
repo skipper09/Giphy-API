@@ -10,7 +10,7 @@ $(document).ready(function() {
         }
 
         $('button').on("click", function() {
-			$("#fails").empty();
+            $("#fails").empty();
 
             var x = $(this).data("type");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=dc6zaTOxFJmzC&limit=10"
@@ -32,25 +32,7 @@ $(document).ready(function() {
 
                         $("#fails").append(newDiv);
 
-                        $('img').on("click", function() {
-
-                            if ($(this).attr("data-state") == "static") {
-
-                                $(this).attr("src",  $(this).attr("data-active"));
-
-                                $(this).attr("data-state", "active")
-
-                            } else {
-
-                                $(this).attr("src", $(this).attr("data-still"));
-
-                                $(this).attr("data-state", "static")
-
-                            }
-                        });
                     }
-
-
                 })
         });
     };
@@ -64,6 +46,20 @@ $(document).ready(function() {
         renderButtons();
     });
 
+    $(document).on("click", "img", function() {
 
+        if ($(this).attr("data-state") == "static") {
 
+            $(this).attr("src", $(this).attr("data-active"));
+
+            $(this).attr("data-state", "active")
+
+        } else {
+
+            $(this).attr("src", $(this).attr("data-still"));
+
+            $(this).attr("data-state", "static")
+
+        }
+    })
 })
