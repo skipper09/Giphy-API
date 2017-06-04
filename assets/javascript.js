@@ -27,8 +27,8 @@ $(document).ready(function() {
                         failImg.attr("data-active", response.data[i].images.fixed_height.url)
                         failImg.attr("data-state", "static")
 
-                        newDiv.append(p);
                         newDiv.append(failImg);
+                        newDiv.append(p);
 
                         $("#fails").append(newDiv);
 
